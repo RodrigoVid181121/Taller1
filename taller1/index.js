@@ -51,14 +51,28 @@ import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, Image} from 
                 description: 'Neptuno es el último planeta del sistema solar, es muy parecido a Urano',
                 src: require('./src/imgs/neptuno.jpg'),
             },
+            {
+                id: '9',
+                title: 'Luna',
+                description: 'Unico satelite natural de la tierra, encargada del control de las mareas terrestres',
+                src: require('./src/imgs/luna.jpg'),
+            },
+            {
+                id: '10',
+                title: 'Ceres',
+                description: 'Planeta enano situado entre la orbita de marte y jupiter',
+                src: require('./src/imgs/ceres.jpg'),
+            }
         ];
 
 
         const Item = ({title, description, img}) => (
             <View style={styles.item}>
+            <SafeAreaView style={styles.contenedor2}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.description}>{description}</Text>
-            <SafeAreaView style={styles.contenedor2}>
+            </SafeAreaView>            
+            <SafeAreaView style={styles.contenedor3}>
             <Image style={styles.img} source={img} />
             </SafeAreaView>            
              </View>
@@ -96,6 +110,14 @@ import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, Image} from 
                 backgroundColor: 'blue',
                 
             },
+            contenedor2: {
+                flexDirection: 'column',
+                alignSelf: 'flex-end',
+            },
+            contenedor3: {
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+            },
             titulo: {
                 fontSize: 35,
                 fontFamily: "Times New Roman, Times, Serif",
@@ -106,15 +128,18 @@ import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, Image} from 
             backgroundColor: 'white',
             padding: 5,
             marginVertical: 8,
-            marginHorizontal: 20,
+            marginHorizontal: 5,
+            alignItems: 'center',
             },
             title: {
             fontSize: 20,
             color: 'gray',
+            textAlign: 'justify',
             },
             description: {
                 fontSize: 15,
                 color: 'black',
+                textAlign: 'justify',
             },
             img: {      
                 width: 100,
@@ -124,7 +149,7 @@ import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, Image} from 
                 resizeMode: 'contain',
                 margin: 9,
                 borderRadius: 150,
-                position: 'relative'
+                position: 'relative',
             },
          });
 
