@@ -6,17 +6,26 @@ const App = () => {
 
   function resultado(cant, prec){
     var result
-    result = cant*prec
+  return  result = cant*prec
   }
 
-  const [nombre, setNombre] = useState(''); 
-  const [precio, setPrecio] = useState(''); 
+  const [nombre, setNombre] = useState([       
+    {nombre:'Banana', precio: '0.15'},
+    {nombre:'pera', precio: '0.15'},
+    {nombre:'uva', precio: '0.05'},
+    {nombre:'elote',precio: '0.20'},
+    {nombre:'tomate', precio: '0.20'},
+    {nombre:'aguacate', precio: '0.50'},
+    {nombre:'rabano', precio: '0.15'},
+    {nombre:'pepino', precio: '0.20'},
+    {nombre:'cebolla', precio: '0.25'},
+    {nombre:'chile verde', precio: '0.25'},]);
   const [cantidad, setCantidad] = useState(''); 
   const [productos, setProductos] = useState([]);
 
   const agregarProducto = e=>{
     e.preventDefault();
-    setProductos([...productos, {nombre}, {precio}, {cantidad}])
+    setProductos([...productos, {nombre}, {cantidad}])
   }
 
   return (
@@ -37,8 +46,7 @@ const App = () => {
                       <thead class="thead-dark">
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">Nombre</th>
-                          <th >Precio</th>
+                          <th scope="col">Productos</th>
                           <th >Cantidad</th>
                         </tr>
                       </thead>
@@ -47,7 +55,7 @@ const App = () => {
                         <tr>
                           <th scope="row">#</th>
                           <td>{item.nombre}</td>
-                          <td>{item.precio}</td>
+                          <td>{item.cantidad}</td>
                         </tr>
                         )}
                       </tbody>
@@ -56,7 +64,7 @@ const App = () => {
                     <div className='card'>
                         <div className='card-body'>
                           <form>
-                            <label> Total</label>
+                            <label> Total: </label> <label>{resultado(nombre.precio, cantidad.cantidad)} </label>
                           </form>
                         </div>
                     </div>
@@ -71,9 +79,15 @@ const App = () => {
                 <div className='card-body'>
                   <form onSubmit={agregarProducto}>
                     <div className='form-group'>
-                    <input className='form-control' onChange={e=>setNombre(e.target.value)} placeholder = 'Nombre del producto' />
-                    <input className='form-control' onChange={e=>setPrecio(e.target.value)} placeholder='$'/>
-                    <input type='number' className='form-control' onChange={e=>setCantidad(e.target.value)}/>
+                    <select className='form-control' onChange={e=>setNombre(e.target.value)} placeholder = 'Nombre del producto'>
+                    {
+                     nombre.map((value, index) => (
+                    <option value={index}>{value.nombre}-${value.precio}</option>
+                         ))
+                         
+                    }
+                    </select>
+                    <input type="number" className='form-control' onChange={e=>setCantidad(e.target.value)} placeholder='Ingrese la cantidad' />
                     </div>
                     <div className='form-group'>
                       <input type='submit' value='Añadir' className='btn btn-primary btn-block' />
